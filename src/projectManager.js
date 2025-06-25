@@ -1,5 +1,5 @@
-import Todo from "./todo";
-import Project from "./project";
+import { Todo }from "./todo";
+import { Project } from "./project";
 
 const projectManager = (function() {
     let projects = []; //private 
@@ -20,18 +20,24 @@ const projectManager = (function() {
         projects.push(project);
     }
 
+
     function pushTodo(todo) {
-        //pushed to the default project, if no projectName provided
-        if(todo.projectName == undefined) {
+        // if projectName provided then push to the todos array of the respective project object
+        if(todo.projectName) {
             projects.forEach(project => {
-                if(project.title == "default") {project.todos.push(todo)};
+                if(project.title == todo.projectName) {project.todos.push(todo)};
+            })
+        } else {
+            //pushed to the default project, if no projectName provided
+            projects.forEach(project => {
+                if(project.title == "default") {project.todos.push(todo)}
             })
         }
 
-        // if projectName provided then push to the todos array of the respective project object
-
     }
 
+    // creates a default project where the todos go when no other projectName is provided
+    createProject("default");
 
     return {getProjects, createTodo, createProject, };
 })();

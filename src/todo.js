@@ -1,6 +1,6 @@
-
+import { formatDistance, subDays } from "date-fns";
     //todo factory function
-export default function Todo(title, description, dueDate, priority, projectName) {
+ function Todo(title, description, dueDate, priority, projectName) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
@@ -8,4 +8,11 @@ export default function Todo(title, description, dueDate, priority, projectName)
     this.projectName = projectName;
 }
 
+function dateFormatter() {
+    // add functionality later, while starting the DOM part to see how the format of the inputted date will be
+    let date = new Date();
+    console.log(date);
+}
 
+
+export { Todo };
