@@ -1,6 +1,7 @@
 import { projectManager } from "./projectManager";
 import { navClick } from "./dom";
 import { inbox } from "./inbox";
+import { newProjectModal } from "./modal";
 
 export const render = (function () {
   let container = document.querySelector(".container");
@@ -69,9 +70,12 @@ navItems.forEach(({ text, icon }) => {
     let projectsHeading = document.createElement("h3");
     projectsHeading.textContent = "Projects";
     let newProjectBtn = document.createElement("button");
-    newProjectBtn.id = "newProjectBtn"
-    newProjectBtn.setAttribute("class", "material-icons");
-    newProjectBtn.textContent = "add";
+    newProjectBtn.id = "newProjectBtn";
+    let newProjectIcon = document.createElement("span");
+    newProjectIcon.className = "material-icons";
+    newProjectIcon.textContent = "add";
+    newProjectBtn.addEventListener("click", (e) => {newProjectModal(e)})
+    newProjectBtn.appendChild(newProjectIcon);
   
   headingWrapper.appendChild(projectsHeading);
   headingWrapper.appendChild(newProjectBtn);
