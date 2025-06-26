@@ -10,8 +10,6 @@ import { formatDistance, subDays } from "date-fns";
 
 function dateFormatter() {
     // add functionality later, while starting the DOM part to see how the format of the inputted date will be
-    let date = new Date();
-    console.log(date);
 }
 
 
