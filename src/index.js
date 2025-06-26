@@ -9,5 +9,5 @@ import { formatDistance, subDays } from 'date-fns';
 projectManager.createTodo("Study", "Read 1 page", "30-06-2025", "high");
 console.log(projectManager.getProjects());
 
-
+render.renderPage();
 

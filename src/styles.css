@@ -5,7 +5,7 @@
   --color-2: #fbeef7; /*pink*/
   --color-3: #fdf7e9; /*yellow*/
   --color-4: #d8d4f5; /* purplish */
-  box-sizing: border-box;
+  --todoist-red: #dc4c3e;
 }
 
 body {
@@ -119,5 +119,57 @@ ul {
 }
 
 .material-icons ~ span {
+  font-size: 20px;
+}
+
+dialog {
+  width: 360px;
+  border: none;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal-container > h2 {
+  padding: 0;
+  margin-top: -15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.btn-wrapper > button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+#submitBtn {
+  background-color: var(--todoist-red);
+  color: #ffffff;
+}
+
+label {
+  font-size: 20px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   font-size: 20px;
 }

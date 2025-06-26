@@ -1,5 +1,6 @@
 import { Todo }from "./todo";
 import { Project } from "./project";
+import { render } from "./render";
 
 const projectManager = (function() {
     let projects = []; //private 
@@ -18,6 +19,7 @@ const projectManager = (function() {
     function createProject(title) {
         let project = new Project(title);
         projects.push(project);
+        render.renderPage();
     }
 
 
@@ -37,9 +39,7 @@ const projectManager = (function() {
     }
 
     // creates a default project where the todos go when no other projectName is provided
-    createProject("Default");
-    createProject("Default");
-    createProject("Default");
+    // createProject("Default");
 
     return {getProjects, createTodo, createProject, };
 })();

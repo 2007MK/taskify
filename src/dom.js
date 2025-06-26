@@ -1,6 +1,4 @@
-import { inbox } from "./inbox";
-import { today } from "./today";
-import { upcoming } from "./upcoming";
+
 
 function navClick(e) {
     
@@ -11,6 +9,30 @@ function navClick(e) {
         case 'today' : today(); break;
         case 'upcoming' : upcoming(); break;
     }
+};
+
+function inbox() {
+    let main = document.querySelector(".main");
+    let heading = document.createElement("h1");
+    heading.textContent = "Inbox";
+
+    main.appendChild(heading);
+}
+
+function today() {
+let main = document.querySelector(".main");
+    let heading = document.createElement("h1");
+    heading.textContent = "Today";
+
+    main.appendChild(heading);
+};
+
+function upcoming() {
+    let main = document.querySelector(".main");
+    let heading = document.createElement("h1");
+    heading.textContent = "Upcoming";
+
+    main.appendChild(heading);
 };
 
 export {navClick}

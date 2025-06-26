@@ -1,11 +1,14 @@
 import { projectManager } from "./projectManager";
 import { navClick } from "./dom";
-import { inbox } from "./inbox";
 import { newProjectModal } from "./modal";
 
 export const render = (function () {
-  let container = document.querySelector(".container");
 
+function renderPage() {
+    
+    let container = document.querySelector(".container");
+    container.innerHTML = "";
+    
   // Sidebar
   let sidebar = document.createElement("div");
   sidebar.className = "sidebar";
@@ -45,23 +48,23 @@ navItems.forEach(({ text, icon }) => {
   // Add both to the button
   btn.appendChild(iconSpan);
   btn.appendChild(labelSpan);
-
+  
   // Add click event
   btn.addEventListener("click", (e) => navClick(e));
-
+  
   // Add button to list
   li.appendChild(btn);
   navUl.appendChild(li);
 });
 
 
-  // adding icons beside nav items
+// adding icons beside nav items
 
 
-  navContainer.appendChild(navUl);
-  sidebar.appendChild(navContainer);
+navContainer.appendChild(navUl);
+sidebar.appendChild(navContainer);
 
-  // Projects Section
+// Projects Section
   let projectsContainer = document.createElement("div");
   projectsContainer.className = "projects-container";
 
@@ -74,7 +77,7 @@ navItems.forEach(({ text, icon }) => {
     let newProjectIcon = document.createElement("span");
     newProjectIcon.className = "material-icons";
     newProjectIcon.textContent = "add";
-    newProjectBtn.addEventListener("click", (e) => {newProjectModal(e)})
+    newProjectBtn.addEventListener("click", () => {newProjectModal()})
     newProjectBtn.appendChild(newProjectIcon);
   
   headingWrapper.appendChild(projectsHeading);
@@ -83,7 +86,7 @@ navItems.forEach(({ text, icon }) => {
 
   let projectsUl = document.createElement("ul");
   projectsUl.id = "project-list";
-
+  
   let projects = projectManager.getProjects();
   projects.forEach((proj) => {
     let li = document.createElement("li");
@@ -99,10 +102,10 @@ navItems.forEach(({ text, icon }) => {
     li.appendChild(btn);
     projectsUl.appendChild(li);
   });
-
+  
   projectsContainer.appendChild(projectsUl);
   sidebar.appendChild(projectsContainer);
-
+  
   // Main content area
   let main = document.createElement("div");
   main.className = "main";
@@ -110,5 +113,8 @@ navItems.forEach(({ text, icon }) => {
   // Append to DOM
   container.appendChild(sidebar);
   container.appendChild(main);
-  inbox(); // To open inbox by default on load
+}
+// inbox(); // To open inbox by default on load
+return { renderPage };
 })();
+
