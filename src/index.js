@@ -1,4 +1,4 @@
-import { initialLoad } from './initialLoad';
+import { render } from './render';
 import './styles.css';
 import { Todo } from './todo';
 import { Project } from './project';

@@ -37,7 +37,9 @@ const projectManager = (function() {
     }
 
     // creates a default project where the todos go when no other projectName is provided
-    createProject("default");
+    createProject("Default");
+    createProject("Default");
+    createProject("Default");
 
     return {getProjects, createTodo, createProject, };
 })();
