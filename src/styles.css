@@ -116,6 +116,7 @@ ul {
 .main {
   margin: 0;
   padding: 10px 30px;
+  position: relative;
 }
 
 .material-icons ~ span {
@@ -167,9 +168,58 @@ label {
   font-size: 20px;
 }
 
-input {
+input[type="text"] {
   display: block;
   width: 100%;
   box-sizing: border-box;
   font-size: 20px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list {
+  list-style: none;
+  background-color: pink;
+}
+
+li > .left-section {
+  display: flex;
+  border: 3px solid red;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.todo-list input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.left-section label {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.new-task-btn {
+  height: 40px;
+  width: 40px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: red;
+  color: white;
 }

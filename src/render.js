@@ -110,7 +110,6 @@ function renderProjects() {
     projectsUl.id = "project-list";
     
     let projects = projectManager.getProjects();
-    console.log(projects);
     
     
     projects.forEach(proj => {
@@ -138,6 +137,19 @@ function renderProjects() {
 };
 
 
+function renderNewTaskBtn() {
+  let main = document.querySelector(".main");
+  let newTaskBtn = document.createElement("button");
+    newTaskBtn.setAttribute("class", "new-task-btn");
+  let iconSpan = document.createElement("span");
+    iconSpan.setAttribute("class", "material-icons");
+    iconSpan.textContent = "add";
+
+   newTaskBtn.appendChild(iconSpan);
+   main.appendChild(newTaskBtn);
+    
+}
 
 
-export {renderStructure, renderNav, renderProjects}
+
+export {renderStructure, renderNav, renderProjects, renderNewTaskBtn}
