@@ -1,5 +1,6 @@
 import { projectManager } from "./projectManager";
-import { clickHandler } from "./dom";
+import { clickHandler, inbox } from "./dom";
+import { getCurrentTab } from "./appState";
 
 
 function renderStructure() {
@@ -28,6 +29,7 @@ projectsContainer.className = "projects-container";
 // Main content area
 let main = document.createElement("div");
 main.className = "main";
+
 
 // Append to DOM
 sidebar.appendChild(navContainer);
@@ -130,9 +132,6 @@ function renderProjects() {
   
   projectsContainer.appendChild(projectsUl);  
 };
-
-
-
 
 
 

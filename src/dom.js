@@ -1,22 +1,31 @@
-
+import {setCurrentTab, getCurrentTab} from './appState';
+import {newProjectModal} from './modal'
 
 function clickHandler(e) {
-  let currentTab = e.target.id; 
   let item = e.currentTarget; 
   let parent = item.closest('div');
-  console.log(`Clicked on ${item}`);
-  console.log(`The parent container is ${parent.classList}`);
 
-  if (parent.classList == "nav-container") {
-    navClickHandler(item.id)
-    return;
-}
+    if (parent.classList == "nav-container") {
+        //storing the current tab, so that its easier to render todos for corresponding tabs later
+        setCurrentTab(item.id); 
+        console.log(`The Current tab is ${getCurrentTab()}`);
+        navClickHandler(item.id)
+        return;
+    }
+    
+    if(parent.classList == "projects-container") {
+        //storing the current tab, so that its easier to render todos for corresponding tabs later
+        setCurrentTab(item.id);
+        console.log(`The Current tab is ${getCurrentTab()}`);
+        projectsClickHandler(item.id);
+        return;
+    }
 
-if(parent.classList == "projects-container") {
-    console.log("Going to projectclickhandler");
-    projectsClickHandler(item.id);
-    return;
-}
+    if(parent.classList == 'headingWrapper') {
+        console.log("New Project btn clicked");
+        newProjectModal();
+    }
+
 }
 
 
@@ -29,6 +38,7 @@ function navClickHandler(item) {
         case 'today' : today(); break;
         case 'upcoming' : upcoming(); break;
     }
+}
 
     function inbox() {
         let main = document.querySelector(".main");
@@ -54,7 +64,6 @@ function navClickHandler(item) {
         main.appendChild(heading);
     };
 
-}
 
 function projectsClickHandler(item) {
     let main = document.querySelector(".main");
@@ -62,4 +71,5 @@ function projectsClickHandler(item) {
 };
 
 
-export {clickHandler}
+
+export {clickHandler, navClickHandler}
