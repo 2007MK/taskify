@@ -9,6 +9,7 @@ const projectManager = (function() {
         return projects;
     }
 
+
     function createTodo(title, description, dueDate, priority, projectName) {
         let todo = new Todo(title, description, dueDate, priority);
         pushTodo(todo, projectName);
@@ -56,7 +57,15 @@ const projectManager = (function() {
             return false;
     }
 
-    return {getProjects, createProject, createTodo, pushProject}
+    function getTodos(projectTitle) {
+        for (const project of projects) {
+            if(project.title == projectTitle) {
+                return project.todos;
+            }
+        }
+    }
+
+    return {getProjects, createProject, createTodo, pushProject, getTodos}
 })();
 
 export {projectManager}

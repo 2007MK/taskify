@@ -1,5 +1,6 @@
 import {setCurrentTab, getCurrentTab} from './appState';
 import {newProjectModal} from './modal'
+import { projectManager } from './projectManager';
 
 function clickHandler(e) {
   let item = e.currentTarget; 
@@ -65,9 +66,19 @@ function navClickHandler(item) {
     };
 
 
-function projectsClickHandler(item) {
+function projectsClickHandler(projectName) {
     let main = document.querySelector(".main");
     main.innerHTML = "";
+    let heading = document.createElement("h1");
+    heading.textContent = projectName;
+    main.appendChild(heading);
+
+
+    // getting all the todos of that particular project
+    let todos = projectManager.getTodos(projectName);
+
+    console.log(todos);
+
 };
 
 
