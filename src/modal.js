@@ -27,9 +27,11 @@ function newProjectModal() {
     let submitBtn = document.createElement("button");
     submitBtn.id = "submitBtn"
     submitBtn.textContent = "Submit";
+    submitBtn.setAttribute("type", "submit");
     let cancelBtn = document.createElement("button");
     cancelBtn.id = "cancelBtn";
     cancelBtn.textContent = "Cancel";
+    cancelBtn.setAttribute("type", "button");
 
     btnWrapper.appendChild(cancelBtn);
     btnWrapper.appendChild(submitBtn);
@@ -43,7 +45,11 @@ function newProjectModal() {
 
 
     //adding event listeners
-    submitBtn.addEventListener("click", () => { submitNewProject(titleInput.value) })
+    form.addEventListener('submit', (e) => { 
+        modal.close();
+        e.preventDefault();
+        submitNewProject(titleInput.value) 
+    })
     cancelBtn.addEventListener("click", () => {
         titleInput.value = "";
         modal.close();
@@ -52,7 +58,6 @@ function newProjectModal() {
 
 
 function submitNewProject(titleInput) {
-    
     let pname = titleInput    
     projectManager.createProject(pname);
 }
