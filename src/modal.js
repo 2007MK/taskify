@@ -1,3 +1,5 @@
+import { getCurrentTab } from "./appState";
+import { projectsClickHandler } from "./dom";
 import { projectManager } from "./projectManager";
 
 function newProjectModal() {
@@ -80,6 +82,7 @@ function newTodoModal() {
     let form = document.createElement("form");
         form.setAttribute("method", "dialog");
 
+        // Title input
         let titleLabel = document.createElement("label");
             titleLabel.setAttribute("for", "title");
             titleLabel.textContent = "Title";
@@ -87,6 +90,8 @@ function newTodoModal() {
             titleInput.setAttribute("id", "title");
             titleInput.setAttribute("type", "text");
 
+
+        // priority input
         let prioritySelectorLabel = document.createElement("label");
             prioritySelectorLabel.setAttribute("for", "priority")
             prioritySelectorLabel.textContent = "Priority";
@@ -103,12 +108,35 @@ function newTodoModal() {
                     optLow.setAttribute("value", "low");
                     optLow.textContent = "Low";
 
-        prioritySelector.appendChild(optHigh);
-        prioritySelector.appendChild(optMedium);
         prioritySelector.appendChild(optLow);
+        prioritySelector.appendChild(optMedium);
+        prioritySelector.appendChild(optHigh);
+
+
+        //dueDate input
+        let dueDateLabel = document.createElement("label");
+            dueDateLabel.setAttribute("for", "dueDate");
+            dueDateLabel.textContent = "Select Due Date:"
+        let dueDate = document.createElement("input");
+            dueDate.setAttribute("type", "date");
+            dueDate.setAttribute("id", "dueDate");
+
+        //Description
+        let descriptionLabel = document.createElement("label");
+            descriptionLabel.setAttribute("for", "description");
+            descriptionLabel.textContent="Description";
+        let description = document.createElement("textarea");
+            description.setAttribute("id", "description");
+            description.setAttribute("placeholder", "Enter some details about the task...");
+            description.setAttribute("rows", "3");
+
 
     form.appendChild(titleLabel);
     form.appendChild(titleInput);
+    form.appendChild(descriptionLabel);
+    form.appendChild(description);
+    form.appendChild(dueDateLabel);
+    form.appendChild(dueDate);
     form.appendChild(prioritySelectorLabel);
     form.appendChild(prioritySelector);
 
@@ -147,8 +175,10 @@ function newTodoModal() {
 };
 
 
-function submitNewTodo() {
-    console.log("New Task Created");
+function submitNewTodo(title, description, dueDate, priority) {
+    let pname = getCurrentTab();
+    projectManager.createTodo(title, description, dueDate, priority, pname);
+    projectsClickHandler(pname);
 }
 
 export {newProjectModal, newTodoModal}

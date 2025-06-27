@@ -111,4 +111,4 @@ function projectsClickHandler(projectName) {
     
 
 
-export {clickHandler, navClickHandler}
+export {clickHandler, navClickHandler, projectsClickHandler}

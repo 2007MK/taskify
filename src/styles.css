@@ -183,6 +183,16 @@ select {
   background-color: pink;
 }
 
+#new-todo textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  resize: vertical;
+  font-family: inherit;
+  background-color: pink;
+}
+
 p {
   margin: 0;
   padding: 0;
