@@ -41,6 +41,20 @@ function newProjectModal() {
     modal.appendChild(modalContainer);
     modal.showModal();
 
+
+    //adding event listeners
+    submitBtn.addEventListener("click", () => { submitNewProject(titleInput.value) })
+    cancelBtn.addEventListener("click", () => {
+        titleInput.value = "";
+        modal.close();
+    })
 };
+
+
+function submitNewProject(titleInput) {
+    
+    let pname = titleInput    
+    projectManager.createProject(pname);
+}
 
 export {newProjectModal}

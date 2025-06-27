@@ -8,8 +8,8 @@ renderStructure();
 renderNav();
 renderProjects();
 
+projectManager.createProject("default");
+
 navClickHandler("inbox"); //open inbox by default
 setCurrentTab("inbox");
 
-
-projectManager.createProject("default");

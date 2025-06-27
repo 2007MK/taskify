@@ -1,8 +1,9 @@
-function Project(title) {
-    this.title = title;
-    this.todos = [];
-    
-};
+class Project {
+    constructor(title) {
+        this.title = title;
+        this.todos = [];
+    }
+}
 
 
 export { Project }

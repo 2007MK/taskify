@@ -110,10 +110,14 @@ function renderProjects() {
     projectsUl.id = "project-list";
     
     let projects = projectManager.getProjects();
+    console.log(projects);
     
-    projects.forEach((proj) => {
+    
+    projects.forEach(proj => {
       let li = document.createElement("li");
       li.id = proj.title;
+      console.log(`new project created and the id is alloted as ${li.id}`);
+      
       let btn = document.createElement("button");
       let iconSpan = document.createElement("span");
       iconSpan.setAttribute("class", "material-icons")
