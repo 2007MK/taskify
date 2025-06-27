@@ -1,6 +1,7 @@
 import { projectManager } from "./projectManager";
 import { clickHandler, inbox } from "./dom";
 import { getCurrentTab } from "./appState";
+import { newTodoModal } from "./modal";
 
 
 function renderStructure() {
@@ -141,10 +142,12 @@ function renderNewTaskBtn() {
   let main = document.querySelector(".main");
   let newTaskBtn = document.createElement("button");
     newTaskBtn.setAttribute("class", "new-task-btn");
-  let iconSpan = document.createElement("span");
+    let iconSpan = document.createElement("span");
     iconSpan.setAttribute("class", "material-icons");
     iconSpan.textContent = "add";
 
+    newTaskBtn.addEventListener("click", () => { newTodoModal() } )
+    
    newTaskBtn.appendChild(iconSpan);
    main.appendChild(newTaskBtn);
     
