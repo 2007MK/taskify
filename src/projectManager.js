@@ -1,6 +1,6 @@
 import { Todo }from "./todo";
 import { Project } from "./project";
-import { render } from "./render";
+import { renderNav, renderProjects } from "./render";
 
 const projectManager = (function() {
     let projects = []; //private 
@@ -9,39 +9,43 @@ const projectManager = (function() {
         return projects;
     }
 
-    //create todo
     function createTodo(title, description, dueDate, priority, projectName) {
-        let todo = new Todo(title, description, dueDate, priority, projectName);
-        pushTodo(todo);
+        let todo = new Todo(title, description, dueDate, priority);
+        pushTodo(todo, projectName);
+        
     }
 
-    //create a project and push it to the projects Array
     function createProject(title) {
         let project = new Project(title);
-        projects.push(project);
-        render.renderPage();
+        pushProject(project);
     }
 
-
-    function pushTodo(todo) {
-        // if projectName provided then push to the todos array of the respective project object
-        if(todo.projectName) {
-            projects.forEach(project => {
-                if(project.title == todo.projectName) {project.todos.push(todo)};
-            })
+    function pushTodo(todo, projectName) {
+        //if projectName given, search the array and push the todo in it.
+        if(!(projectName === undefined)) {
+            for (const proj of projects) {
+                if(proj.title == projectName) {
+                    proj.todos.push(todo);
+                    break;
+                }
+            }
         } else {
-            //pushed to the default project, if no projectName provided
-            projects.forEach(project => {
-                if(project.title == "default") {project.todos.push(todo)}
-            })
+            projects[0].todos.push(todo); //if no projectName given then simply push the todo to the first item, which will be "default" project
         }
-
+        renderNav();
+        renderProjects();
     }
 
-    // creates a default project where the todos go when no other projectName is provided
-    // createProject("Default");
+    function pushProject(project) {
+        projects.push(project);
+        renderProjects();
+    }
 
-    return {getProjects, createTodo, createProject, };
+
+
+
+
+    return {getProjects, createProject, createTodo}
 })();
 
 export {projectManager}

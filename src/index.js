@@ -1,13 +1,10 @@
-import { render } from './render';
 import './styles.css';
-import { Todo } from './todo';
-import { Project } from './project';
+import { renderStructure, renderNav, renderProjects } from './render';
 import { projectManager } from './projectManager';
-import { formatDistance, subDays } from 'date-fns';
+
+renderStructure();
+renderNav();
+renderProjects();
 
 
-projectManager.createTodo("Study", "Read 1 page", "30-06-2025", "high");
-console.log(projectManager.getProjects());
-
-render.renderPage();
-
+projectManager.createProject("default");
