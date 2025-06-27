@@ -16,8 +16,13 @@ const projectManager = (function() {
     }
 
     function createProject(title) {
-        let project = new Project(title);
-        pushProject(project);
+        if (projectExist(title) == false) {   
+            let project = new Project(title);
+            pushProject(project);
+        } else {
+            alert("Project Already Exists")
+        }
+        
     }
 
     function pushTodo(todo, projectName) {
@@ -41,11 +46,17 @@ const projectManager = (function() {
         renderProjects();
     }
 
+    function projectExist(title) {
+        let projects = getProjects();
+        for (let pObj of projects) {
+                if(pObj.title == title) {
+                    return true;
+                } 
+            }
+            return false;
+    }
 
-
-
-
-    return {getProjects, createProject, createTodo}
+    return {getProjects, createProject, createTodo, pushProject}
 })();
 
 export {projectManager}
