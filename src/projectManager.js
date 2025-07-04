@@ -65,7 +65,18 @@ const projectManager = (function() {
         }
     }
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos}
+    function getAllTodos() {
+        let todos = [];
+        for (const proj of projects) {
+            for (const todo of proj.todos) {
+                todos.push(todo);
+            }
+        }
+
+        return todos;
+    }
+
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos}
 })();
 
 export {projectManager}

@@ -45,14 +45,61 @@ function navClickHandler(item) {
     function inbox() {
         let main = document.querySelector(".main");
         let heading = document.createElement("h1");
-        heading.textContent = "Inbox";
-    
+            heading.textContent = "Inbox";
+
+        let cardsContainer = document.createElement("div");
+            cardsContainer.setAttribute("class", "cards-container");
+        
+        // making the cards
+        let totalTodosDiv = document.createElement("div");
+            totalTodosDiv.setAttribute("class", "inbox-card");
+            totalTodosDiv.setAttribute("id", "total-todos");
+        
+            let totalTodosTitle = document.createElement("h2");
+            totalTodosTitle.textContent = "Total Tasks";
+
+            let allTodos = projectManager.getAllTodos();
+            let totalTodos = document.createElement("h3");
+            totalTodos.textContent = allTodos.length;
+            totalTodos.setAttribute("class", "card-content");
+
+            totalTodosDiv.appendChild(totalTodosTitle);
+            totalTodosDiv.appendChild(totalTodos);
+            cardsContainer.appendChild(totalTodosDiv);
+
+        let totalProjectsDiv = document.createElement("div");
+            totalProjectsDiv.setAttribute("class", "inbox-card");
+            totalProjectsDiv.setAttribute("id", "total-projects");
+        
+            let totalProjectsTitle = document.createElement("h2");
+            totalProjectsTitle.textContent = "Total Projects";
+
+            let allProjects = projectManager.getProjects();
+            let totalProjects = document.createElement("h3");
+            totalProjects.textContent = allProjects.length;
+            totalProjects.setAttribute("class", "card-content");
+
+            totalProjectsDiv.appendChild(totalProjectsTitle);
+            totalProjectsDiv.appendChild(totalProjects);
+            cardsContainer.appendChild(totalProjectsDiv);
+
+
+        // Displaying all Tasks
+        
+        
         main.appendChild(heading);
+        main.appendChild(cardsContainer);
+
+        let listHeading = document.createElement("h3");
+        listHeading.textContent = "All Tasks";
+        main.appendChild(listHeading);
+        projectsClickHandler("inbox");
     }
     
     function today() {
     let main = document.querySelector(".main");
-        let heading = document.createElement("h1");
+    main.innerHTML="";    
+    let heading = document.createElement("h1");
         heading.textContent = "Today";
     
         main.appendChild(heading);
@@ -60,6 +107,7 @@ function navClickHandler(item) {
     
     function upcoming() {
         let main = document.querySelector(".main");
+        main.innerHTML="";
         let heading = document.createElement("h1");
         heading.textContent = "Upcoming";
     
@@ -68,16 +116,18 @@ function navClickHandler(item) {
 
 
 function projectsClickHandler(projectName) {
-    let main = document.querySelector(".main");
-    main.innerHTML = "";
-    let heading = document.createElement("h1");
-    heading.textContent = projectName;
-    main.appendChild(heading);
-    renderNewTaskBtn();
-
-    // getting all the todos of that particular project
     let todos = projectManager.getTodos(projectName);
-    console.log(todos);
+    let main = document.querySelector(".main");
+
+    if (projectName === "inbox") {
+        todos = projectManager.getAllTodos();    
+    } else {
+        main.innerHTML="";
+        let heading = document.createElement("h1");
+        heading.textContent = projectName;
+        main.appendChild(heading);
+        renderNewTaskBtn();
+    }
 
     //making the container and the list where all the todos go
     let todoContainer = document.createElement("div");
