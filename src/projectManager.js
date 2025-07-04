@@ -1,6 +1,7 @@
 import { Todo }from "./todo";
 import { Project } from "./project";
 import { renderNav, renderProjects } from "./render";
+import { getCurrentTab } from "./appState"
 
 const projectManager = (function() {
     let projects = []; //private 
@@ -10,8 +11,8 @@ const projectManager = (function() {
     }
 
 
-    function createTodo(title, description, dueDate, priority, projectName) {
-        let todo = new Todo(title, description, dueDate, priority);
+    function createTodo(title, description, dueDate, priority, projectName, checked) {
+        let todo = new Todo(title, description, dueDate, priority, checked);
         pushTodo(todo, projectName);
         
     }
@@ -76,7 +77,35 @@ const projectManager = (function() {
         return todos;
     }
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos}
+    function toggleStatus(e) {
+        let todoID = e.target.id;
+        let {projIndex, todoIndex} = findSpecificTodo(todoID);
+        let project = projects[projIndex];
+        let todo = project.todos[todoIndex];
+
+        
+        todo.completed = !todo.completed;
+
+    }
+
+
+    function findSpecificTodo(id) {
+        let projIndex;
+        let todoIndex;
+        for (const [index, proj] of projects.entries()) {
+            let todos = proj.todos;
+            for (const [index, todo] of todos.entries()) {
+                if (todo.id === id) {
+                    todoIndex = index;
+                    break;
+                }
+            }
+            projIndex = index;
+            return {projIndex, todoIndex};
+        }
+    }
+
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus}
 })();
 
 export {projectManager}

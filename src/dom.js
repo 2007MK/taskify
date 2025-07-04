@@ -143,6 +143,12 @@ function projectsClickHandler(projectName) {
             leftSection.setAttribute("class", "left-section");
             let checkbox = document.createElement("input");
                 checkbox.setAttribute("type", "checkbox");
+                checkbox.addEventListener('change', (e) => projectManager.toggleStatus(e));
+
+            if (todo.completed) {
+                checkbox.checked = true;
+            }
+            
             let taskName = document.createElement("label");
                 taskName.textContent = todo.title;
                 taskName.setAttribute("for", todo.id);
