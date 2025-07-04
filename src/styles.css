@@ -200,14 +200,23 @@ p {
 
 .todo-list {
   list-style: none;
-  background-color: pink;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+li {
+  display: flex;
+  border: 1px solid black;
 }
 
 li > .left-section {
   display: flex;
-  border: 3px solid red;
+  border: 1px solid red;
   gap: 0.5rem;
   align-items: center;
+  flex-grow: 1;
 }
 
 .todo-list input[type="checkbox"] {

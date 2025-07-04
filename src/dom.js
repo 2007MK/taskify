@@ -156,7 +156,21 @@ function projectsClickHandler(projectName) {
 
         leftSection.appendChild(checkbox);
         leftSection.appendChild(taskName);
+
+        let rightSection = document.createElement("div");
+            rightSection.setAttribute("class", "right-section");
+        let deleteBtn = document.createElement("button");
+            deleteBtn.setAttribute("class", "todo-delete-btn");
+            deleteBtn.addEventListener("click", (e) => projectManager.deleteTodo(todo.id));
+        let iconSpan = document.createElement("span");
+            iconSpan.setAttribute("class", "material-icons");
+            iconSpan.textContent = "delete";
+
+        deleteBtn.appendChild(iconSpan);
+        rightSection.appendChild(deleteBtn);
+
         li.appendChild(leftSection);
+        li.appendChild(rightSection);
         todoList.appendChild(li);
         
         todoContainer.appendChild(todoList);

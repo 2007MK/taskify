@@ -2,6 +2,7 @@ import { Todo }from "./todo";
 import { Project } from "./project";
 import { renderNav, renderProjects } from "./render";
 import { getCurrentTab } from "./appState"
+import { navClickHandler, projectsClickHandler } from "./dom" 
 
 const projectManager = (function() {
     let projects = []; //private 
@@ -83,9 +84,25 @@ const projectManager = (function() {
         let project = projects[projIndex];
         let todo = project.todos[todoIndex];
 
-        
+
         todo.completed = !todo.completed;
 
+    }
+
+    function deleteTodo(id) {
+        let {projIndex, todoIndex} = findSpecificTodo(id);
+        let project = projects[projIndex];
+        let todos = project.todos;
+        todos.splice(todoIndex, 1);
+
+        console.log(projects);
+
+        if (getCurrentTab() === "inbox") {
+            navClickHandler("inbox");
+        } else {
+            projectsClickHandler(getCurrentTab());
+        }
+        
     }
 
 
@@ -105,7 +122,7 @@ const projectManager = (function() {
         }
     }
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus}
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo}
 })();
 
 export {projectManager}
