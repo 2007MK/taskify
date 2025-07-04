@@ -6,6 +6,7 @@
   --color-3: #fdf7e9; /*yellow*/
   --color-4: #d8d4f5; /* purplish */
   --todoist-red: #dc4c3e;
+  box-sizing: border-box;
 }
 
 body {
@@ -206,14 +207,42 @@ p {
   gap: 5px;
 }
 
-li {
+.todo-list > li {
+  padding: 5px 10px;
   display: flex;
   border: 1px solid black;
+  border-radius: 10px;
 }
+
+.high {
+  background-color: var(--color-1);
+}
+
+.medium {
+  background-color: var(--color-2);
+}
+
+.low {
+  background-color: var(--color-4);
+}
+
+.todo-delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.todo-delete-btn > span {  
+  color: var(--todoist-red);
+  font-size: 20px;
+}
+
 
 li > .left-section {
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   gap: 0.5rem;
   align-items: center;
   flex-grow: 1;
@@ -272,6 +301,10 @@ li > .left-section {
   background-color: var(--color-1);
 }
 
-#total-projects {
+#total-completed {
   background-color: var(--color-2);
+}
+
+#total-pending {
+  background-color: var(--color-3);
 }

@@ -56,7 +56,7 @@ function navClickHandler(item) {
             totalTodosDiv.setAttribute("id", "total-todos");
         
             let totalTodosTitle = document.createElement("h2");
-            totalTodosTitle.textContent = "Total Tasks";
+            totalTodosTitle.textContent = "Total Todos";
 
             let allTodos = projectManager.getAllTodos();
             let totalTodos = document.createElement("h3");
@@ -67,25 +67,40 @@ function navClickHandler(item) {
             totalTodosDiv.appendChild(totalTodos);
             cardsContainer.appendChild(totalTodosDiv);
 
-        let totalProjectsDiv = document.createElement("div");
-            totalProjectsDiv.setAttribute("class", "inbox-card");
-            totalProjectsDiv.setAttribute("id", "total-projects");
+        let totalCompletedDiv = document.createElement("div");
+            totalCompletedDiv.setAttribute("class", "inbox-card");
+            totalCompletedDiv.setAttribute("id", "total-completed");
         
-            let totalProjectsTitle = document.createElement("h2");
-            totalProjectsTitle.textContent = "Total Projects";
+            let totalCompletedTitle = document.createElement("h2");
+            totalCompletedTitle.textContent = "Completed";
 
-            let allProjects = projectManager.getProjects();
-            let totalProjects = document.createElement("h3");
-            totalProjects.textContent = allProjects.length;
-            totalProjects.setAttribute("class", "card-content");
+            let completedTodos = projectManager.getCompletedTodos();
+            let totalCompletedTodos = document.createElement("h3");
+            totalCompletedTodos.textContent = completedTodos.length;
+            totalCompletedTodos.setAttribute("class", "card-content");
 
-            totalProjectsDiv.appendChild(totalProjectsTitle);
-            totalProjectsDiv.appendChild(totalProjects);
-            cardsContainer.appendChild(totalProjectsDiv);
+            totalCompletedDiv.appendChild(totalCompletedTitle);
+            totalCompletedDiv.appendChild(totalCompletedTodos);
+            cardsContainer.appendChild(totalCompletedDiv);
 
-
-        // Displaying all Tasks
+        let totalPendingDiv = document.createElement("div");
+            totalPendingDiv.setAttribute("class", "inbox-card");
+            totalPendingDiv.setAttribute("id", "total-pending");
         
+            let totalPendingTitle = document.createElement("h2");
+            totalPendingTitle.textContent = "Pending";
+            
+            let pendingTodos = projectManager.getPendingTodos();
+            let totalPendingTodos = document.createElement("h3");
+            totalPendingTodos.textContent = pendingTodos.length;
+            totalPendingTodos.setAttribute("class", "card-content");
+
+            
+            totalPendingDiv.appendChild(totalPendingTitle);
+            totalPendingDiv.appendChild(totalPendingTodos);
+            cardsContainer.appendChild(totalPendingDiv);
+
+
         
         main.appendChild(heading);
         main.appendChild(cardsContainer);
@@ -94,6 +109,8 @@ function navClickHandler(item) {
         listHeading.textContent = "All Tasks";
         main.appendChild(listHeading);
         projectsClickHandler("inbox");
+        console.log(projectManager.getProjects());
+        
     }
     
     function today() {

@@ -13,10 +13,11 @@ renderNewTaskBtn();
 let project = new Project("default"); //default project
 projectManager.pushProject(project); 
 
-projectManager.createTodo("1", "test", "test", "test", "default", true);
-projectManager.createTodo("2", "test", "test", "test", "default", true);
-projectManager.createTodo("3", "test", "test", "test", "default", false);
+projectManager.createTodo("Complete science assignment", "test", "test", "test", "default", true);
+projectManager.createTodo("Get Milk", "test", "test", "test", "default", true);
+projectManager.createTodo("Workout for 20 mins", "test", "test", "test", "default", false);
 
 navClickHandler("inbox"); //open inbox by default
 setCurrentTab("inbox");
+
 

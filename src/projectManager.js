@@ -87,6 +87,10 @@ const projectManager = (function() {
 
         todo.completed = !todo.completed;
 
+        if (getCurrentTab() === "inbox") {
+            navClickHandler("inbox");
+        }
+
     }
 
     function deleteTodo(id) {
@@ -122,7 +126,32 @@ const projectManager = (function() {
         }
     }
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo}
+
+    function getCompletedTodos() {
+        let todos = getAllTodos();
+        let completedTodos = [];
+        for (const todo of todos) {
+            if (todo.completed) {
+                completedTodos.push(todo);
+            }
+        }
+        return completedTodos;
+    }
+
+    function getPendingTodos() {
+        let todos = getAllTodos();
+        let pendingTodos = [];
+        for (const todo of todos) {
+            if (!todo.completed) {
+                pendingTodos.push(todo);
+            }
+        }
+        return pendingTodos;
+    }
+
+    
+
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo, getCompletedTodos, getPendingTodos}
 })();
 
 export {projectManager}
