@@ -30,7 +30,7 @@ export const Storage = (function() {
             projectManager.rehydrateProject(element.title);
             let todos = element.todos;
             for (const todo of todos) {
-                projectManager.rehydrateTodo(todo.title, todo.description, todo.dueDate, todo.priority, element.title, todo.completed, todo.id);
+                projectManager.rehydrateTodo(todo.title, todo.description, todo.dueDate, todo.priority, element.title, todo.completed);
             }
         }
 

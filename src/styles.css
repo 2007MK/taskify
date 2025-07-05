@@ -308,3 +308,9 @@ li > .left-section {
 #total-pending {
   background-color: var(--color-3);
 }
+
+input[type="checkbox"]:checked + label{
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+}

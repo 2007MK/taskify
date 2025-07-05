@@ -13,8 +13,8 @@ const projectManager = (function() {
     }
 
 
-    function createTodo(title, description, dueDate, priority, projectName, checked, id) {
-        let todo = new Todo(title, description, dueDate, priority, checked, id);
+    function createTodo(title, description, dueDate, priority, projectName, checked) {
+        let todo = new Todo(title, description, dueDate, priority, checked);
         pushTodo(todo, projectName);
         
     }
@@ -87,7 +87,8 @@ const projectManager = (function() {
         let project = projects[projIndex];
         let todo = project.todos[todoIndex];
 
-
+        console.log(todo);
+        
         todo.completed = !todo.completed;
 
         if (getCurrentTab() === "inbox") {
@@ -115,20 +116,17 @@ const projectManager = (function() {
 
 
     function findSpecificTodo(id) {
-        let projIndex;
-        let todoIndex;
-        for (const [index, proj] of projects.entries()) {
-            let todos = proj.todos;
-            for (const [index, todo] of todos.entries()) {
-                if (todo.id === id) {
-                    todoIndex = index;
-                    break;
-                }
+    for (const [projIndex, proj] of projects.entries()) {
+        let todos = proj.todos;
+        for (const [todoIndex, todo] of todos.entries()) {
+            if (todo.id === id) {
+                return {projIndex, todoIndex};
             }
-            projIndex = index;
-            return {projIndex, todoIndex};
         }
     }
+    // Return null or throw error if todo not found
+    return null;
+}
 
 
     function getCompletedTodos() {
