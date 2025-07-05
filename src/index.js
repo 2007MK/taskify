@@ -4,18 +4,16 @@ import { projectManager } from './projectManager';
 import { getCurrentTab, setCurrentTab } from './appState';
 import {navClickHandler} from './dom';
 import { Project } from './project';
+import {Storage} from './localStorage';
+
 
 renderStructure();
 renderNav();
 renderProjects();
 renderNewTaskBtn();
 
-let project = new Project("default"); //default project
-projectManager.pushProject(project); 
+Storage.loadStorage();
 
-projectManager.createTodo("Complete science assignment", "test", "test", "test", "default", true);
-projectManager.createTodo("Get Milk", "test", "test", "test", "default", true);
-projectManager.createTodo("Workout for 20 mins", "test", "test", "test", "default", false);
 
 navClickHandler("inbox"); //open inbox by default
 setCurrentTab("inbox");

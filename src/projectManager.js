@@ -3,17 +3,18 @@ import { Project } from "./project";
 import { renderNav, renderProjects } from "./render";
 import { getCurrentTab } from "./appState"
 import { navClickHandler, projectsClickHandler } from "./dom" 
+import {Storage} from './localStorage'
 
 const projectManager = (function() {
-    let projects = []; //private 
+    let projects = [];
 
     function getProjects() {
         return projects;
     }
 
 
-    function createTodo(title, description, dueDate, priority, projectName, checked) {
-        let todo = new Todo(title, description, dueDate, priority, checked);
+    function createTodo(title, description, dueDate, priority, projectName, checked, id) {
+        let todo = new Todo(title, description, dueDate, priority, checked, id);
         pushTodo(todo, projectName);
         
     }
@@ -40,6 +41,7 @@ const projectManager = (function() {
         } else {
             projects[0].todos.push(todo); //if no projectName given then simply push the todo to the first item, which will be "default" project
         }
+        Storage.updateStorage();
         renderNav();
         renderProjects();
     }
@@ -47,6 +49,7 @@ const projectManager = (function() {
     function pushProject(project) {
         projects.push(project);
         renderProjects();
+        Storage.updateStorage();
     }
 
     function projectExist(title) {
@@ -91,6 +94,7 @@ const projectManager = (function() {
             navClickHandler("inbox");
         }
 
+        Storage.updateStorage();
     }
 
     function deleteTodo(id) {
@@ -106,7 +110,7 @@ const projectManager = (function() {
         } else {
             projectsClickHandler(getCurrentTab());
         }
-        
+        Storage.updateStorage();
     }
 
 
@@ -149,9 +153,16 @@ const projectManager = (function() {
         return pendingTodos;
     }
 
+    function rehydrateProject(title) {
+        createProject(title);
+    }
+
+    function rehydrateTodo(title, description, dueDate, priority, projectName, checked) {
+        createTodo(title, description, dueDate, priority, projectName, checked);
+    }
     
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo, getCompletedTodos, getPendingTodos}
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo, getCompletedTodos, getPendingTodos, projects, rehydrateProject, rehydrateTodo}
 })();
 
 export {projectManager}

@@ -1,11 +1,12 @@
 // Object factory
-function Todo(title, description, dueDate, priority, checked) {
+function Todo(title, description, dueDate, priority, checked, id) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.id = generateID();
     this.completed = checked;
+    this.id = id;
+    if(id == undefined) this.id = generateID();
 }
 
 function generateID() {
