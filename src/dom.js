@@ -165,6 +165,12 @@ function projectsClickHandler(projectName) {
             if (todo.completed) {
                 checkbox.checked = true;
             }
+
+            switch(todo.priority) {
+                case 'high': li.classList.add("high"); break;
+                case 'medium': li.classList.add("medium"); break;
+                case 'low': li.classList.add("low"); break;
+            }
             
             let taskName = document.createElement("label");
                 taskName.textContent = todo.title;

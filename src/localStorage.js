@@ -15,9 +15,9 @@ export const Storage = (function() {
         if (!isLocalStoragePresent) {
         let project = new Project("default"); //default project
         projectManager.pushProject(project); 
-        projectManager.createTodo("Complete science assignment", "test", "test", "test", "default", true);
-        projectManager.createTodo("Get Milk", "test", "test", "test", "default", true);
-        projectManager.createTodo("Workout for 200 mins", "test", "test", "test", "default", false);
+        projectManager.createTodo("Complete science assignment", "test", "test", "high", "default", true);
+        projectManager.createTodo("Get Milk", "test", "test", "medium", "default", true);
+        projectManager.createTodo("Workout for 200 mins", "test", "high", "low", "default", false);
         console.log("No storage Present");
         return;
         } 

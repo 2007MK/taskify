@@ -128,7 +128,6 @@ const projectManager = (function() {
     return null;
 }
 
-
     function getCompletedTodos() {
         let todos = getAllTodos();
         let completedTodos = [];

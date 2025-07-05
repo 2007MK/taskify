@@ -2,7 +2,7 @@
   --bright-background: #ffffff;
   --dull-background: #fbfcfe;
   --color-1: #e7feea; /*green*/
-  --color-2: #fbeef7; /*pink*/
+  --color-2: #ffe1f6; /*pink*/
   --color-3: #fdf7e9; /*yellow*/
   --color-4: #d8d4f5; /* purplish */
   --todoist-red: #dc4c3e;
@@ -201,7 +201,7 @@ p {
 
 .todo-list {
   list-style: none;
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
@@ -210,20 +210,20 @@ p {
 .todo-list > li {
   padding: 5px 10px;
   display: flex;
-  border: 1px solid black;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 15px;
 }
 
 .high {
-  background-color: var(--color-1);
-}
-
-.medium {
   background-color: var(--color-2);
 }
 
+.medium {
+  background-color: var(--color-3);
+}
+
 .low {
-  background-color: var(--color-4);
+  background-color: var(--color-1);
 }
 
 .todo-delete-btn {
@@ -234,11 +234,10 @@ p {
   border: none;
 }
 
-.todo-delete-btn > span {  
+.todo-delete-btn > span {
   color: var(--todoist-red);
   font-size: 20px;
 }
-
 
 li > .left-section {
   display: flex;
@@ -280,9 +279,8 @@ li > .left-section {
   color: white;
 }
 
-
 .cards-container {
-  display:flex;
+  display: flex;
   flex: 1;
   flex-wrap: wrap;
   gap: 10px;
@@ -295,21 +293,22 @@ li > .left-section {
   flex-basis: 150px;
   border-radius: 20px;
   padding: 8px 20px;
+  box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 15px;
 }
 
-#total-todos {
-  background-color: var(--color-1);
+#total-todos > h3 {
+  color: blue;
 }
 
-#total-completed {
-  background-color: var(--color-2);
+#total-completed > h3 {
+  color: green;
 }
 
-#total-pending {
-  background-color: var(--color-3);
+#total-pending > h3 {
+  color: red;
 }
 
-input[type="checkbox"]:checked + label{
+input[type="checkbox"]:checked + label {
   text-decoration: line-through;
   color: gray;
   opacity: 0.7;

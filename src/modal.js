@@ -166,7 +166,7 @@ function newTodoModal() {
     form.addEventListener('submit', (e) => { 
         modal.close();
         e.preventDefault();
-        submitNewTodo(titleInput.value) 
+        submitNewTodo(titleInput.value, description.value, dueDate.value, prioritySelector.value) 
     })
     cancelBtn.addEventListener("click", () => {
         titleInput.value = "";
