@@ -120,6 +120,8 @@ function navClickHandler(item) {
         heading.textContent = "Today";
     
         main.appendChild(heading);
+
+        projectsClickHandler("today");
     };
     
     function upcoming() {
@@ -129,6 +131,8 @@ function navClickHandler(item) {
         heading.textContent = "Upcoming";
     
         main.appendChild(heading);
+
+        projectsClickHandler("upcoming");
     };
 
 
@@ -136,14 +140,28 @@ function projectsClickHandler(projectName) {
     let todos = projectManager.getTodos(projectName);
     let main = document.querySelector(".main");
 
-    if (projectName === "inbox") {
-        todos = projectManager.getAllTodos();    
-    } else {
-        main.innerHTML="";
-        let heading = document.createElement("h1");
-        heading.textContent = projectName;
-        main.appendChild(heading);
-        renderNewTaskBtn();
+    // if (projectName === "inbox") {
+    //     todos = projectManager.getAllTodos();    
+    // } else {
+    //     main.innerHTML="";
+    //     let heading = document.createElement("h1");
+    //     heading.textContent = projectName;
+    //     main.appendChild(heading);
+    //     renderNewTaskBtn();
+    // }
+
+    switch(projectName) {
+        case 'inbox': todos = projectManager.getAllTodos(); break;
+        case 'today': todos = projectManager.getTodayTodos(); break;
+        case 'upcoming': todos = projectManager.getUpcomingTodos(); break;
+        default : {
+            main.innerHTML="";
+            let heading = document.createElement("h1");
+            heading.textContent = projectName;
+            main.appendChild(heading);
+            renderNewTaskBtn();
+            break;
+        } 
     }
 
     //making the container and the list where all the todos go

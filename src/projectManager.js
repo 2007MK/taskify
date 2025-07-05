@@ -4,7 +4,7 @@ import { renderNav, renderProjects } from "./render";
 import { getCurrentTab } from "./appState"
 import { navClickHandler, projectsClickHandler } from "./dom" 
 import {Storage} from './localStorage'
-
+import {isToday, isFuture, startOfDay, parseISO } from 'date-fns';
 const projectManager = (function() {
     let projects = [];
 
@@ -150,6 +150,21 @@ const projectManager = (function() {
         return pendingTodos;
     }
 
+
+    function getTodayTodos() {
+        return getAllTodos().filter(todo => {
+            if(!todo.dueDate) return false;
+            return isToday(parseISO(todo.dueDate))
+        });
+    }
+
+    function getUpcomingTodos() {
+        return getAllTodos().filter(todo => {
+            if(!todo.dueDate) return false;
+            return isFuture(startOfDay(parseISO(todo.dueDate)));
+        });
+    }
+
     function rehydrateProject(title) {
         createProject(title);
     }
@@ -159,7 +174,7 @@ const projectManager = (function() {
     }
     
 
-    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo, getCompletedTodos, getPendingTodos, projects, rehydrateProject, rehydrateTodo}
+    return {getProjects, createProject, createTodo, pushProject, getTodos, getAllTodos, toggleStatus, deleteTodo, getCompletedTodos, getPendingTodos, projects, rehydrateProject, rehydrateTodo, getTodayTodos, getUpcomingTodos}
 })();
 
 export {projectManager}
