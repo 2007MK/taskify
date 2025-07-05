@@ -85,10 +85,7 @@ const projectManager = (function() {
         let todoID = e.target.id;
         let {projIndex, todoIndex} = findSpecificTodo(todoID);
         let project = projects[projIndex];
-        let todo = project.todos[todoIndex];
-
-        console.log(todo);
-        
+        let todo = project.todos[todoIndex];        
         todo.completed = !todo.completed;
 
         if (getCurrentTab() === "inbox") {
@@ -103,8 +100,6 @@ const projectManager = (function() {
         let project = projects[projIndex];
         let todos = project.todos;
         todos.splice(todoIndex, 1);
-
-        console.log(projects);
 
         if (getCurrentTab() === "inbox") {
             navClickHandler("inbox");

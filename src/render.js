@@ -116,7 +116,6 @@ function renderProjects() {
     projects.forEach(proj => {
       let li = document.createElement("li");
       li.id = proj.title;
-      console.log(`new project created and the id is alloted as ${li.id}`);
       
       let btn = document.createElement("button");
       let iconSpan = document.createElement("span");
